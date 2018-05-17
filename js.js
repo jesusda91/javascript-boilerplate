@@ -443,3 +443,57 @@ los puedan utilizar. */
 
 /* Interface: es una clase abstracta pura en la que todos sus métodos son abstractos 
 y por tanto no se pueden implementar en la clase Interface */
+
+
+//REST
+/* Buscando una definición sencilla, REST es cualquier interfaz entre sistemas que use HTTP 
+para obtener datos o generar operaciones sobre esos datos en todos los formatos posibles, 
+como XML y JSON. */ 
+
+/* Es un estilo de arquitectura software para sistemas hipermedia distribuidos 
+como la World Wide Web.*/
+
+/*en la actualidad se usa en el sentido más amplio para describir cualquier interfaz entre 
+sistemas que utilice directamente HTTP para obtener datos o indicar la ejecución de operaciones 
+sobre los datos, en cualquier formato (XML, JSON, etc) sin las abstracciones adicionales de los 
+protocolos basados en patrones de intercambio de mensajes, como por ejemplo SOAP. */
+
+/* Las operaciones más importantes relacionadas con los datos en cualquier sistema REST 
+y la especificación HTTP son cuatro: POST (crear), GET (leer y consultar), PUT (editar) y 
+DELETE (eliminar). */
+
+/* Los objetos en REST siempre se manipulan a partir de la URI. 
+Es la URI y ningún otro elemento el identificador único de cada recurso de ese sistema REST. 
+La URI nos facilita acceder a la información para su modificación o borrado, o, por ejemplo,
+para compartir su ubicación exacta con terceros.  */
+
+/* Rest son los principios de arquitectura de software
+Restful son los servicios web que siguem esos principios */
+
+/* Todo es un recurso, identificador unico (URI), usa metodos HTTP estandar,
+pueden tener multiples representaciones (XML, JSON, ...), Comunicacion sin estado */
+
+
+/* Errores http */
+/* 1xx: Respuestas informativas */
+
+/* 2xx: Peticiones correctas */
+/* 200 OK Respuesta estándar para peticiones correctas.
+201 Created La petición ha sido completada y ha resultado en la creación de un nuevo recurso. 
+204 No Content La petición se ha completado con éxito pero su respuesta no tiene ningún contenido (la respuesta sí que puede incluir información en sus cabeceras HTTP).2​
+*/
+
+/* 3xx: Redirecciones */
+/* 300 Multiple Choices Indica opciones múltiples para el URI que el cliente podría seguir. Esto podría ser utilizado, por ejemplo, para presentar distintas opciones de formato para video, listar archivos con distintas extensiones o word sense disambiguation. */
+
+/* 4xx Errores del cliente */
+/* 400 Bad Request La solicitud contiene sintaxis errónea y no debería repetirse. */
+/* 401 Unauthorized Similar al 403 Forbidden, pero específicamente para su uso cuando la 
+autentificación es posible pero ha fallado o aún no ha sido provista. 
+Vea autenticación HTTP básica y Digest access authentication. */
+/* 403 Forbidden La solicitud fue legal, pero el servidor rehúsa responderla dado que el cliente no tiene los privilegios para hacerla. En contraste a una respuesta 401 No autorizado, la autenticación no haría la diferencia. */
+/* 404 Not Found Recurso no encontrado. Se utiliza cuando el servidor web no encuentra la página o recurso solicitado. */
+/* 405 Method Not Allowed Una petición fue hecha a una URI utilizando un método de solicitud no soportado por dicha URI; por ejemplo, cuando se utiliza GET en un formulario que requiere que los datos sean presentados vía POST, o utilizando PUT en un recurso de solo lectura. */
+
+/* 5xx Errores de servidor */
+/* 500 Internal Server Error Es un código comúnmente emitido por aplicaciones empotradas en servidores web, mismas que generan contenido dinámicamente, por ejemplo aplicaciones montadas en IIS o Tomcat, cuando se encuentran con situaciones de error ajenas a la naturaleza del servidor web. */
