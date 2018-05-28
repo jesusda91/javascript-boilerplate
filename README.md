@@ -764,6 +764,170 @@ Así, si por ejemplo redefinimos la etiqueta `<span>` de esta manera (display: i
 
 ![](./image3.png)
 
+## ¿Cuál es la diferencia entre las posiciones relative, fixed, absolute y static para un elemento dado?
+
+- **static:** Es el valor que toma un elemento por defecto para posicionarse. Con este valor, el elemento respetará el flujo normal de la página, es decir, se posicionará en el lugar que le corresponde y no tendrá en cuenta los valores para las propiedades top, left, right y bottom.
+```css
+.rojo{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    border: 2px green solid;
+}
+#movido{
+    left: 100px;
+}
+```
+```html
+<div class="rojo"></div>
+<div id="movido" class="rojo"></div>
+<div class="rojo"></div>
+```
+![](./static.png)
+
+- **relative:** Mediante este valor podemos posicionar un elemento respecto al flujo normal de la página. Se podría decir que estamos posicionando un elemento tomando como referencia el flujo normal (la posición por defecto) de dicho elemento. Podremos usar top, left, right y bottom para posicionar nuestro elemento tomando como referencia la posición por defecto del elemento. En este caso, voy a aplicarle la propiedad left: 100px del ejemplo anterior y el div movido se desplazará 100 pixeles a la derecha desde su posición por defecto.
+```css
+.rojo{
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  border: 2px green solid;
+}
+#movido{
+  position: relative;
+  left: 100px;
+}
+```
+```html
+<div class="rojo"></div>
+<div id="movido" class="rojo"></div>
+<div class="rojo"></div>
+```
+
+![](./relative.png)
+
+- **absolute:** Este valor también aceptará los valores top, left, right y bottom. El elemento con position: absolute no estará dentro del flujo normal de la página y tomará como referencia la ventana del navegador o el elemento posicionado (que tenga cualquier valor de position excepto static) más cercano si es padre del elemento que queremos posicionar.
+
+    A continuación te muestro un ejemplo de cada uno:
+
+    Ejemplo tomando como referencia la ventana del navegador
+
+    En este caso voy a tomar como referencia la ventana del navegador y desplazar el div movido 40 pixeles hacia abajo y 50 pixeles a la derecha respecto a esta.
+
+    Puedes observar que el div movido, al no estar dentro del flujo normal de la página, no afecta al flujo normal del resto de elementos y por lo tanto los otros dos elementos se posicionan juntos (sin respetar el espacio que deja el div movido en el ejemplo anterior, en el cual sí que está en el flujo normal de la página).
+
+```css
+.rojo{
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  border: 2px green solid;
+}
+#movido{
+  position: absolute;
+  top: 40px;
+  left: 50px;
+}
+```
+```html
+<div class="rojo"></div>
+<div id="movido" class="rojo"></div>
+<div class="rojo"></div>
+```
+    Ejemplo tomando como referencia el elemento padre con position:relative más cercano
+
+    En este caso, he utilizado el mismo CSS para el div con id movido que en el ejemplo anterior para que se viera que en este caso el div movido toma como referencia el elemento padre con position: relative y no la ventana del navegador (40 pixeles hacia abajo y 50 pixeles hacia la derecha respecto del elemento padre).
+
+```css
+.rojo{
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  border: 2px green solid;
+}
+#relativo{
+  position: relative;
+}
+#movido{
+  position: absolute;
+  top: 40px;
+  left: 50px;
+}
+```
+```html
+<div class="rojo"></div>
+<div id="relativo" class="rojo">
+  <div id="movido" class="rojo"></div>
+</div>
+```
+
+- **fixed:** Los elementos a los cuales se les posiciona con position: fixed también están fuera del flujo normal de la página. Sin embargo, no se debe de confundir con los elementos que están posicionados con position: absolute.
+
+    A diferencia de estos últimos, los elementos con position: fixed toman como referencia la ventana del navegador y no respetan el tener un contenedor padre que esté posicionado. Además, al hacer scroll en la página, el elemento que esté posicionado como position: fixed seguirá en la misma posición respecto a la ventana del navegador aunque el scroll haya desplazado la página hacia abajo.
+
+    Como una imagen vale más que mil palabras y tomando como referencia el último ejemplo del apartado position: absolute:
+```css
+.rojo{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    border: 2px green solid;
+}
+#primerDiv{
+    height: 2000px
+}
+#relativo{
+    position: relative;
+}
+#movido{
+    position: fixed;
+    top: 40px;
+    left: 50px;
+}
+```
+```html
+<div id="primerDiv" class="rojo"></div>
+<div id="relativo" class="rojo">
+    <div id="movido" class="rojo"></div>
+</div>
+```
+
+    Como puedes observar, el div movido está posicionado con position: fixed respecto a la ventana del navegador independientemente de que esté contenido en un elemento con position: relative o de que se realice un scroll sobre la página.
+
+## ¿Hay alguna razón por la cual preferirías usar translate() en vez de el posicionamiento absoluto? ¿Alguna razón para hacer lo contrario?
+
+It is possible to achieve better performances with transform rather than position.
+Currently most browsers only use GPU acceleration when they have a strong indication that an HTML element would benefit from it. The strongest indication is that a 3D transformation was applied to it. Now you might not really want to apply a 3D transformation, but still gain the benefits from GPU acceleration - no problem. Simply apply the identity transformation:
+`-webkit-transform: translateZ(0);`
+reason behind this, is that you delegate some of the work that the CPU has to do, to the GPU, however be considerate as this won't necessarily be always worth, especially on a mobile device like the iPad, that is your environment:
+Please be warned that this applying this transformation does not guarantee to help your performance. It might simply crank up your GPU, use up more battery but deliver the same performance as before. So be careful with this technique and only use it if you experience a true performance win.
+
+## Explique "event delegation".
+
+Event delegation allows you to avoid adding event listeners to specific nodes;  instead, the event listener is added to one parent.  That event listener analyzes bubbled events to find a match on child elements.  The base concept is fairly simple but many people don't understand just how event delegation works.  Let me explain the how event delegation works and provide pure JavaScript example of basic event delegation.
+```html
+<ul id="nav">
+    <li id="post-1">Item 1</li>
+    <li id="post-2">Item 2</li>
+    <li id="post-3">Item 3</li>
+    <li id="post-4">Item 4</li>
+    <li id="post-5">Item 5</li>
+    <li id="post-6">Item 6</li>
+</ul>
+```
+```javascript
+document.getElementById("nav").addEventListener("click", function(e) {
+    // e.target is the clicked element!
+    // If it was a list item
+    if(e.target && e.target.nodeName == "LI") {
+        // List item found!  Output the ID!
+        console.log("List item ", e.target.id.replace("post-", ""), " was clicked!");
+    }
+});
+```
+
+## ¿Qué es una IIFE?
+
 ## ¿Qué nuevos elementos componen "HTML5"?
 - Semántica - Un marcado de texto (Text Markup) más semántico. Lo que agrega mejor accesibilidad, más herramientas para la descripción de el contenido Web y mayor facilidad para el SEO.
 `<footer>`, `<canvas>`, `<article>`, `<main>`, `<nav>`, `<aside>`, `<dialog>`, `<section>`, - Etc...
