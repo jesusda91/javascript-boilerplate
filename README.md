@@ -630,42 +630,256 @@ Todo es un recurso, identificador unico (URI), usa metodos HTTP estandar, pueden
 ### 1xx: Respuestas informativas
 
 ### 2xx: Peticiones correctas
- 200 OK Respuesta estándar para peticiones correctas.
-201 Created La petición ha sido completada y ha resultado en la creación de un nuevo recurso. 
-204 No Content La petición se ha completado con éxito pero su respuesta no tiene ningún contenido (la respuesta sí que puede incluir información en sus cabeceras HTTP).2​
+-200 OK Respuesta estándar para peticiones correctas.
+-201 Created La petición ha sido completada y ha resultado en la creación de un nuevo recurso. 
+-204 No Content La petición se ha completado con éxito pero su respuesta no tiene ningún contenido (la respuesta sí que puede incluir información en sus cabeceras HTTP).2​
 
 
 ### 3xx: Redirecciones
  300 Multiple Choices Indica opciones múltiples para el URI que el cliente podría seguir. Esto podría ser utilizado, por ejemplo, para presentar distintas opciones de formato para video, listar archivos con distintas extensiones o word sense disambiguation. 
 
 ### 4xx Errores del cliente
- 400 Bad Request La solicitud contiene sintaxis errónea y no debería repetirse. 
- 401 Unauthorized Similar al 403 Forbidden, pero específicamente para su uso cuando la 
+-400 Bad Request La solicitud contiene sintaxis errónea y no debería repetirse. 
+-401 Unauthorized Similar al 403 Forbidden, pero específicamente para su uso cuando la 
 autentificación es posible pero ha fallado o aún no ha sido provista. 
 Vea autenticación HTTP básica y Digest access authentication. 
- 403 Forbidden La solicitud fue legal, pero el servidor rehúsa responderla dado que el cliente no tiene los privilegios para hacerla. En contraste a una respuesta 401 No autorizado, la autenticación no haría la diferencia. 
- 404 Not Found Recurso no encontrado. Se utiliza cuando el servidor web no encuentra la página o recurso solicitado. 
- 405 Method Not Allowed Una petición fue hecha a una URI utilizando un método de solicitud no soportado por dicha URI; por ejemplo, cuando se utiliza GET en un formulario que requiere que los datos sean presentados vía POST, o utilizando PUT en un recurso de solo lectura. 
+-403 Forbidden La solicitud fue legal, pero el servidor rehúsa responderla dado que el cliente no tiene los privilegios para hacerla. En contraste a una respuesta 401 No autorizado, la autenticación no haría la diferencia. 
+-404 Not Found Recurso no encontrado. Se utiliza cuando el servidor web no encuentra la página o recurso solicitado. 
+-405 Method Not Allowed Una petición fue hecha a una URI utilizando un método de solicitud no soportado por dicha URI; por ejemplo, cuando se utiliza GET en un formulario que requiere que los datos sean presentados vía POST, o utilizando PUT en un recurso de solo lectura. 
 
 ### 5xx Errores de servidor
- 500 Internal Server Error Es un código comúnmente emitido por aplicaciones empotradas en servidores web, mismas que generan contenido dinámicamente, por ejemplo aplicaciones montadas en IIS o Tomcat, cuando se encuentran con situaciones de error ajenas a la naturaleza del servidor web. 
+500 Internal Server Error Es un código comúnmente emitido por aplicaciones empotradas en servidores web, mismas que generan contenido dinámicamente, por ejemplo aplicaciones montadas en IIS o Tomcat, cuando se encuentran con situaciones de error ajenas a la naturaleza del servidor web. 
 
 
 ## Graceful degradation
- Un sitio web diseñado para que degrade gradualmente está pensado para que se vea primero 
-correctamente en los navegadores  modernos. Para que se puedan acceder en los navegadores más 
-antiguos, y menos ricos en características deben degradar, de forma a funcionar, pero con menos 
-características.
-La página empieza a degradar cuando, a través de detección user-agent, o utilizando la 
-herramienta Modernizr como biblioteca de detección  de características para HTML5/CSS3 le 
-vamos substituyendo o añadiendo soluciones al conflicto de forma a tener un resultado que se 
-pueda presentar a cliente.
+Un sitio web diseñado para que degrade gradualmente está pensado para que se vea primero correctamente en los navegadores  modernos. Para que se puedan acceder en los navegadores más antiguos, y menos ricos en características deben degradar, de forma a funcionar, pero con menos características. La página empieza a degradar cuando, a través de detección user-agent, o utilizando la herramienta Modernizr como biblioteca de detección  de características para HTML5/CSS3 le vamos substituyendo o añadiendo soluciones al conflicto de forma a tener un resultado que se pueda presentar a cliente.
 
 ## Progressive Enhancement
- El Progressive Enhancement dice que los sitios webs no tienen que tener la misma apariencia 
-en todos los navegadores,  pero aprovechar las capacidades del navegador para que el mayor número
-posible de usuarios tenga la mejor experiencia posible. 
-La Mejora progresiva seria lo inverso a la Degradación gradual; empezar por lo básico (HTML + CSS)
-e ir evolucionando “progresivamente”, utilizando las mismas herramientas de user-agent y 
-detección de características. 
+El Progressive Enhancement dice que los sitios webs no tienen que tener la misma apariencia en todos los navegadores, pero aprovechar las capacidades del navegador para que el mayor número posible de usuarios tenga la mejor experiencia posible. La Mejora progresiva seria lo inverso a la Degradación gradual; empezar por lo básico (HTML + CSS) e ir evolucionando “progresivamente”, utilizando las mismas herramientas de user-agent y detección de características. 
 
+## Singleton
+"Singleton", que en ingeniería del software es un patrón diseñado para limitar la creación de objetos pertenecientes a una clase. El objetivo de este patrón es el de garantizar que una clase solo tenga una instancia (o ejemplar) y proporcionar un punto de acceso global a ella. Esta patrón; por ejemplo, suele ser utilizado para las conexiones a bases de datos. Este patrón se implementa haciendo privado el constructor de la clase y creando (en la propia clase) un método que crea una instancia del objeto si este no existe.
+
+## Pruebas unitarias
+Una prueba unitaria es una forma de comprobar el correcto funcionamiento de una unidad de código. Por ejemplo en diseño estructurado o en diseño funcional una función o un procedimiento, en diseño orientado a objetos una clase. Esto sirve para asegurar que cada unidad funcione correctamente y eficientemente por separado. Además de verificar que el código hace lo que tiene que hacer, verificamos que sea correcto el nombre, los nombres y tipos de los parámetros, el tipo de lo que se devuelve, que si el estado inicial es válido entonces el estado final es válido
+
+## Pruebas funcionales
+En este caso, el objetivo de las pruebas funcionales es comprobar que el software que se ha creado cumple con la función para la que se había pensado. En este tipo de pruebas lo que miramos, lo que nos importan, son las entradas y salidas al software. Es decir, si ante una serie de entradas el software devuelve los resultados que nosotros esperábamos. Aquí solo observamos que se cumpla la funcionalidad, no comprobamos que el software esté bien hecho, no miramos el diseño del software. Estudiamos el software desde la perspectiva del cliente, no del desarrollador.
+
+# Preguntas frecuentes entrevista tecnica frontend
+
+## ¿Qué hace un `doctype` (`<!DOCTYPE html>`)?
+Es una declaración al comienzo de un documento HTML (previo al tag `<html>`). Consiste en una instrucción que le deja saber al navegador en que versión de HTML está el documento para interpretarlo correctamente.
+Definir `<!DOCTYPE html>` le dice al navegador que tiene que parsear el HTML basándose en el estandar HTML5.
+En el caso de navegadores más viejos, interpretarán el HTML en un modo "compatible con HTML5" pero ignorarán las funcionalidades que no soporten.
+`<!DOCTYPE html>` es mucho más simple que las definiciones de doctype anteriores, como por ejemplo:
+`<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">`
+
+
+
+## ¿Qué nuevos elementos componen "HTML5"?
+- Semántica - Un marcado de texto (Text Markup) más semántico. Lo que agrega mejor accesibilidad, más herramientas para la descripción de el contenido Web y mayor facilidad para el SEO.
+`<footer>`, `<canvas>`, `<article>`, `<main>`, `<nav>`, `<aside>`, `<dialog>`, `<section>`, - Etc...
+- Nuevos elementos de form:
+`<datalist>`, `<keygen>`, `<output>`
+- Conectividad (Diferentes métodos de comunicación)
+WebSockets, WebRTC, Eventos del Servidor (server-sent events)
+- Offline Web
+Caché de aplicación, Web Workers, IndexedDB, Uso de archivos offline (File API / FileReader), Detección de la conectividad (navigator.onLine)
+- Multimedia e interacción
+`<Audio>` y `<Video>`
+- Trabajos gráficos
+WebGL, Canvas, SVG
+- JavaScript/Integraciónes
+Web Workers, History API, DragAndDrop, RequestAnimationFrame, FullScreenAPI, PointerLock, 
+- Acceso al dispositivo
+Cámara, Eventos touch, Orientación del dispositivo, Geolocalización, Web Bluetooth, - WebVR
+- CSS3
+
+## ¿Para qué sirven los atributos `data-`?
+Es un atributo de HTML, un estándar que permite adjuntar o guardar información extra en un elemento.
+```html
+  <div
+    id="unDivCualquiera"
+    data-usuario="fforres"
+    data-usuario-correo="felipe.torressepulveda@gmail.com" >
+```
+El acceso está estandarizado, puedes acceder a la data de la siguiente manera:
+```javascript
+const article = document.getElementById('unDivCualquiera');
+article.dataset.usuario // "fforres"
+article.dataset.usuarioCorreo // "felipe.torressepulveda@gmail.com"
+```
+
+## ¿Cuál es la diferencia entre una `cookie`, `localStorage` y una `sessionStorage`?
+**Cookie:** Pequeño set de información enviada por un sitio Web y almacenado en el navegador de un usuario. Se guarda en el disco, por lo que esta data es persistente. Es posible guardar y recuperar la data usando JS de la siguiente manera:
+
+```javascript
+document.cookie = "username=fforres";
+/*O darle una fecha de expiración*/
+document.cookie = "username=fforres; expires=Thu, 19 Feb 2019 11:59:59 UTC";
+const cookie = document.cookie;
+```
+
+Cada llamada a `document.cookie = "(...)"` crea una nueva cookie. Las cookies se guardan en texto plano. Pueden guardar poca data (4KB). Son enviadas en cada request.
+
+**sessionStorage:** La propiedad `sessionStorage` permite acceder al objeto local `Storage` pero solo durante la sesión del usuario. Una sesión dura hasta que el navegador es cerrado. La data sobrevive a recargas de página. Una nueva "tab" o "ventana" genera una nueva sesión.
+
+```javascript
+sessionStorage.setItem('usuario', 'fforres');
+/* guarda en la llave "usuario" el valor "fforres" */
+
+const usr = sessionStorage.getItem('usuario');  // usr retorna "fforres"
+
+sessionStorage.removeItem('usuario') // remueve la data guardada en esa llave
+
+sessionStorage.clear() //remueve toda la data de la sesión.
+```
+aprox. 5MB de storage por dominio
+
+**localStorage:** La propiedad `localStorage` permite acceder al objeto local `Storage`. La data no tiene una fecha de expiración y es accesible desde múltiples ventanas o tabs del mismo dominio y navegador. 
+```javascript
+const miStorage = localStorage;
+/* myStorage es ahora un objecto Storage */
+
+miStorage.setItem('usuario', 'fforres');
+/* guarda en la llave "usuario" el valor "fforres" */
+
+miStorage.usuario  // retorna "fforres"
+```
+
+aprox. 5MB de storage por dominio.
+
+Las propiedades del `localStorage` solo pueden ser accedidas por páginas con el mismo dominio que la página que definió (set o *seteó*) las propiedades. Por ejemplo, si una página como ejemplo.com *setea* algo en el `localStorage` puede ser accedida por ejemplo.com/xxxxx, ejemplo.com/yyyyy, ejemplo.com/xxxxx/zzzzz y así.
+
+**Como nota muy importante:** los datos guardados en `localStorage` y en `sessionStorage` son **específicos al protocolo de la página**. No es lo mismo http://ejemplo.com que https://ejemplo.com, por lo que los datos a los que acceden/escriben son distintos.
+
+
+## ¿Qué diferencias existen entre `<script>`, `<script async>` y `<script defer>`?
+**script:** Descarga el archivo y lo ejecuta, pero tanto la descarga como la ejecución se desarrollan secuencialmente y por lo mismo detienen el parseo del HTML.
+
+**script async:** Descarga el archivo paralelamente a la descarga/parseo del resto del documento/assets, pero al momento de ejecutarlo detiene el parseo del HTML.
+
+**script defer:** Descarga el archivo paralelamente a la descarga/parseo del resto del documento/assets, pero espera hasta que todo el HTML esté parseado antes de ejecutar el script.
+
+
+
+## ¿Puedo poner un tag `<link>` dentro del body? ¿Por qué no es recomendado?
+Sí. No es recomendado, aunque posible. Ejemplo de un proceso de descarga de un archivo HTML, un archivo CSS, una imagen y un archivo JS:
+- Descarga el "HTML".
+- Se parsea el HTML y ve que hay un archivo CSS, un archivo JS y una imagen.
+- Se inicia la descarga de la imagen.
+- El navegador decide que no puede mostrar la página sin antes descargar el CSS y JS.
+  - Esta decisión se toma porque ambos archivos podrían alterar la visualización del DOM causando Reflow o Repaint si el CSS tuviese un `display: none` o el JS un `Node.remove()`, por ejemplo.
+- Descarga por orden de aparición (CSS o JS).
+- Al descargar el CSS, lo lee, parsea, y se asegura que no llame nada más (un `@import` o `background:url('./imagen.jpg')`).
+- Al descargar el JS, lo lee, interpreta y ejecuta.
+- El navegador decide que ahora sí puede mostrar el DOM, por lo que empieza a pintar y estilar el DOM.
+
+En este ejemplo, en el caso de tener un segundo `<link />` dentro del body, el proceso se ejecuta normalmente hasta que se parsea el DOM, dentro del body se encuentra con el `<link />`, se detiene el parseo y pintado del DOM para descargar y parsear el CSS.
+
+Luego de eso vuelve a resumir el trabajo con el DOM y aplicar estilos de ser necesario.
+
+## ¿Dónde es recomendado poner los tag `<script/>`? ¿Después o antes del body? ¿Existen excepciones?
+Depende mucho del contenido y acciones que ejecutarán dichos scripts. En antaño los `<script/>` se colocaban posterior al body para priorizar el mostrar la estructura del contenido (HTML), estilarlo (CSS) y después agregar la interactividad con los scripts. Pero actualmente existen los atributos `async` o `defer` que nos ayudan a definir descargas, parseos y ejecución diferidos.
+
+## ¿Qué es el Rendering Progresivo?
+Un conjunto de técnicas y decisiones tomadas y aplicadas a fin de priorizar qué contenido o elemento se debería cargar primero (el contenido de una noticia, el landing en un sitio Web) y despriorizar la carga de otras secciones (footer, banners, side-menus, etc).
+
+## ¿Qué son y cómo afectan al performance el `Reflow` y `Paint`/`RePaint` ?
+**RePaint** es el nombre que se le da al proceso que ejecuta el navegador cuando realiza cambios visuales a un elemento, pero no cambia su `layout` (color de fondo, visibilidad, outline).
+
+**Reflow** es el proceso que ejecuta el navegador cuando los cambios que realiza a un elemento, cambian su layout (posicion, tamaño, etc) que obligan a recalcular y posiblemente reposicionar otros elementos en el documento.
+
+Ambos procesos son críticos a la hora de analizar y optimizar la performance, donde `ReFlow` afecta de manera mucho mayor.
+
+Al mover un elemento que cause `ReFlow`, es necesario recalcular **todos** los otros elementos del DOM que podrían verse afectados por este cambio.
+
+`RePaint` necesita verificar la visibilidad de todos los otros nodos y como estos afectan a la visibilidad de el/los nodos iniciales.
+Ejemplo:
+
+El cambiar el color de fondo de un `<div id="a" />` sobre el que hay un `<div id="b">` con una opacidad `0.5`, fuerza a recalcular el color de fondo y los efectos que tiene el `<div id="b">` sobre el A
+
+## ¿Qué estructura tiene el `DOM`?
+- Un árbol.
+- Un árbol imperfecto y desbalanceado.
+
+## ¿Qué diferencia existe entre `DOM` y `HTML`?
+**HTML:** (Hyper Text Markup Language) Es un lenguaje de marcado (*markup*) que define una sintaxis específica para representar un cierto tipo de componentes que luego el navegador interpreta y transforma en el DOM.
+**DOM** (Document Object Model) - Es el modelo de la interpretación de un HTML. El DOM es (y expone) una API para un documento de HTML válido que permite interactuar y realizar acciones programáticas sobre él.
+Ejemplo:
+```javascript
+if (a) {
+    const texto = document.createTextNode(" Hola :-) ");
+    document.body.appendChild(texto);
+}
+```
+
+## ¿Por qué usar tags como `<Section>` o `<Article>` pudiendo usar `<div />`?
+En primera instancia, por accesibilidad. Utilizar elementos como `<article>`, `<details>`, `<footer>` o `<nav>` ayuda a los screen readers a mapear e interpretar correctamente el DOM.
+Tocando el tema de la accesibilidad, de nada sirve usar atributos como `role` o `aria-*` de manera conflictiva.
+```html
+<!-- MAL! :( -->
+<button role="header"/>
+
+<!-- Mucho Mejor :) -->
+<header role="header"/>
+```
+
+## Si tengo 3 tags estilados exactamente iguales (`<button />`, `<a />` y `<div />`) ¿Qué debería elegir para interactuar con un usuario y por qué?
+Una pregunta un poco truculenta, principalmente porque la decisión pasa por accesibilidad más que por otra cosa.
+
+La idea primaria es usar elementos concretos para las interacciones que se realizarán. Por ejemplo, si se busca hacer un submit a un formulario, es mejor usar un `<button />` que un `<span />` estilado. En el ejemplo anterior, aunque ambos realicen la acción mediante una función de JavaScript, screen readers pueden considerar de manera distinta ambos elementos.
+
+Como excepción, es posible usar atributos como `role=""` o `aria-*` para especificar el rol de un elemento, pero no es bueno usarlos de manera conflictiva.
+
+### ¿Qué es un meta tag?
+Son Elementos o Tags usados en HTML que proveen metadata del sitio o "Información sobre la información" (o del contenido) del mismo sitio.
+Ejemplo: Consideremos este meta tag:
+```html
+<meta charset=“utf-8”>
+```
+El tag no contiene información concreta del sitio como lo sería una noticia, un título, una imagen o un link, pero entrega información sobre el formato de encoding del sitio.
+
+## ¿Qué es y cuáles son las ventajas del Shadow DOM?
+El Shadow DOM es una funcionalidad que permite inyectar un sub-árbol de elementos DOM (un SUB-DOM) en el documento actualmente renderizado en el navegador.
+
+*(El Shadow DOM asocia un nuevo tipo de nodo asociado que se puede asociar con los elementos llamado el "Shadow Root", el elemento al que se le asocia este "Shadow Root" se le dice "Shadow Host")*
+
+La idea del Shadow DOM es crear elementos Web con estilo y funcionalidades auto-contenidos (o encapsulados), por lo que reglas de estilo como `#contenedor { background: red; }` definidas dentro del Shadow DOM, no afectará elementos que cumplan con esa condición que estén fuera de el.
+
+Ejemplo:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script defer src="./index.js" charset="utf-8"></script>
+    <style media="screen">
+        #shadow {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="shadow">Hello Shadow DOM</h1>
+</body>
+</html>
+```
+```javascript
+const header = document.createElement('header');
+const shadowRoot = header.attachShadow({mode: 'open'});
+shadowRoot.innerHTML = `
+    <style>
+        #shadow {
+            color: red;
+        }
+    </style>
+    <h1 id="shadow">Hello Shadow DOM</h1>`; // También se podría usar appendChild().
+document.body.appendChild(header);
+```
+
+Teniendo estos 2 elementos `<h1 id="shadow">Hello Shadow DOM</h1>`, uno siendo creado y estilado mediante el uso de Shadow DOM y el otro siendo creado por la interpretación del DOM, el navegador muestra lo siguiente:
+
+![](./shadow_dom.png)
