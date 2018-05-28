@@ -1,6 +1,3 @@
-
-
-
 ## Closures
 ```javascript
 function start() {
@@ -1168,38 +1165,415 @@ Teniendo estos 2 elementos `<h1 id="shadow">Hello Shadow DOM</h1>`, uno siendo c
 ![](./shadow_dom.png)
 
 
-¿Cuál es la diferencia entre == y ===?
+## ¿Cuál es la diferencia entre == y ===?
 
-¿Cuál es la diferencia entre el evento "document load" y el evento “document ready"?
-¿Cuál es la diferencia entre variables null, undefined y undeclared?
-Explique la política de mismo origen (same-origin policy) y sus repercusiones en JavaScript.
+Los operadores === y !== son los operadores de comparación estricta. Esto significa que si los operandos tienen tipos diferentes, no son iguales. Por ejemplo,
+```javascript
+1 === "1" // false
+1 !== "1"  // true
+null === undefined // false
+```
 
-var foo = 10 + '20';
+Los operadores == y != son los operadores de comparación relajada. Es decir, si los operandos tienen tipos diferentes, JavaScript trata de convertirlos para que fueran comparables. Por ejemplo,
 
+```javascript
+1 == "1" // true
+1 != "1" // false
+null == undefined // true
+```
+Vale mencionar que el operador `==` no es transitivo, al contrario que `===`
+```javascript
+"0" == 0 // true
+0 == ""  // true
+"0" == ""// false
+```
 
-"i'm a lasagna hog".split("").reverse().join("");
+## ¿Cuál es la diferencia entre el evento "document load" y el evento “document ready"?
 
+Una página puede ser manipulada sin riesgo de errores solamente cuando el documento está listo. jQuery se encarga de detectar dicho estado en nuestro lugar. El código incluido dentro de $( document ).ready() se ejecutará solamente cuando el modelo de objeto de documento (DOM) esté listo para ejecutar código Javascript. Por su parte, el código incluido después de $( window ).on( "load", function() { ... }) se ejecutará solamente cuando la página entera (imágenes o iframes), no solamente el DOM, esté lista.
 
-Pregunta: ¿Cuál es el valor de window.foo?
+## ¿Cuál es la diferencia entre variables null, undefined y undeclared?
+undefined means a variable has been declared but has not yet been assigned a value
+null is an assignment value. It can be assigned to a variable as a representation of no value:
+
+A variable is undeclared when it does not use the var keyword. It gets created on the global object (that is, the window), thus it operates in a different space as the declared variables.
+From the preceding examples, it is clear that undefined and null are two distinct types: undefined is a type itself (undefined) while null is an object.
+```javascript
+null === undefined // false
+null == undefined // true
+null === null // true
+
+null = 'value' // ReferenceError
+undefined = 'value' // 'value'
+
+typeof(null) //"object"
+null instanceof Object //false
+```
+
+## Explique la política de mismo origen (same-origin policy) y sus repercusiones en JavaScript.
+La política same-origin (mismo-origen) restringe cómo un documento o script cargado desde un origen puede interactuar con un rescurso de otro origen. Es un mecanismo de seguridad crítico para aislar documentos potencialmente maliciosos.
+Dos páginas tienen el mismo origen si el protocolo, puerto (si es especificado) y host son los mismo para ambas páginas. Verá esto a veces referido como la tupla esquema/host/puerto" (donde una "tupla" es un conjunto de tres componentes que juntos forman un todo).
+La siguiente tabla muestra ejemplos de comparaciones de origenes para la URL `http://store.company.com/dir/page.html`:
+
+![](./sameorigin.png)
+
+## ¿Cuál es el valor de foo?
+```javascript
+var foo = 10 + '20'; //"1020"
+```
+
+## Que imprime
+```javascript
+"i'm a lasagna hog".split("").reverse().join(""); //"goh angasal a m'i"
+```
+
+## ¿Cuál es el valor de window.foo?
+```javascript
 ( window.foo || ( window.foo = "bar" ) );
+```
 
-
-Pregunta: ¿Cuál es el resultado de los dos alerts?
+## ¿Cuál es el resultado de los dos alerts?
+```javascript
 var foo = "Hello";
 (function() {
-  var bar = " World";
-  alert(foo + bar);
+    var bar = " World";
+    console.log(foo + bar); //Hello World
 })();
-alert(foo + bar);
+console.log(foo + bar); //Error bar not defined
+```
 
-
-Pregunta: ¿Cuál es el valor de foo.length?
+## ¿Cuál es el valor de foo.length?
+```javascript
 var foo = [];
 foo.push(1);
 foo.push(2);
+//2
+```
 
 
-Pregunta: ¿Cuál es el valor de foo.x?
+## ¿Cuál es el valor de foo.x?
+```javascript
 var foo = {n: 1};
 var bar = foo;
 foo.x = foo = {n: 2};
+//undefined
+```
+
+### davidshariff Quiz
+
+## Are CSS property names case-sensitive?
+
+```css
+ul {
+    MaRGin: 10px; //it works
+}
+//No
+```
+
+## Does setting margin-top and margin-bottom have an affect on an inline element?
+No
+
+## Does setting padding-top and padding-bottom on an inline element add to its dimensions?
+No
+
+## If you have a <p> element with font-size: 10rem, will the text be responsive when the user resizes / drags the browser window?
+No
+
+## The pseudo class `:checked` will select inputs with type radio or checkbox, but not <option> elements.
+False
+
+## In a HTML document, the pseudo class :root always refers to the <html> element.
+True
+
+## The translate() function can move the position of an element on the z-axis.
+False
+
+## What is the color of the text Sausage ?
+```html
+<ul class="shopping-list" id="awesome">
+    <li><span>Milk</span></li>
+    <li class="favorite" id="must-buy"><span class="highlight">Sausage</span></li>
+</ul>
+```
+```css
+ul {
+    color: red;
+}
+li {
+    color: blue;
+}
+```
+blue
+
+## What is the color of the text Sausage ?
+
+```html
+<ul class="shopping-list" id="awesome">
+    <li><span>Milk</span></li>
+    <li class="favorite" id="must-buy"><span class="highlight">Sausage</span></li>
+</ul>
+```
+```css
+ul li {
+    color: red;
+}
+#must-buy {
+    color: blue;
+}
+```
+blue
+
+## What is the color of the text Sausage ?
+
+```html
+<ul class="shopping-list" id="awesome">
+    <li><span>Milk</span></li>
+    <li class="favorite" id="must-buy"><span class="highlight">Sausage</span></li>
+</ul>
+```
+```css
+ul#awesome {
+    color: red;
+}
+ul.shopping-list li.favorite span {
+    color: blue;
+}
+```
+blue
+
+## What will happen to the position of #example?
+
+```html
+<p id="example">Hello</p>
+```
+
+```css
+#example {
+    margin-bottom: -5px;
+}
+```
+All elements succeeding #example with move 5px upwards
+
+## What will happen to the position of #example?
+
+```html
+<p id="example">Hello</p>
+```
+
+```css
+#example {
+    margin-left: -5px;
+}
+```
+It will move 5px to left
+
+
+## Are unused style resources still downloaded by the browser?
+
+```html
+<div id="test1">
+    <span id="test2"></span>
+</div>
+```
+```css
+#i-am-useless {
+    background-image: url('mypic.jpg');
+}
+```
+No
+
+## On page load, will mypic.jpg get downloaded by the browser?
+
+```html
+<div id="test1">
+    <span id="test2"></span>
+</div>
+```
+```css
+#test2 {
+    background-image: url('mypic.jpg');
+    display: none;
+}
+```
+Yes
+
+## On page load, will mypic.jpg get downloaded by the browser?
+
+```html
+<div id="test1">
+    <span id="test2"></span>
+</div>
+```
+```css
+#test1 {
+    display: none;
+}
+#test2 {
+    background-image: url('mypic.jpg');
+    visibility: hidden;
+}
+```
+No
+
+
+## What is the use of the only selector?
+
+```css
+@media only screen and (max-width: 1024px) {
+    margin: 0;
+}
+```
+Stops older browsers from parsing the remainder of the selector
+
+## Does overflow: hidden create a new block formatting context?
+
+```html
+<div>
+    <p>I am floated</p>
+    <p>So am I</p>
+</div>
+```
+```css
+div {
+    overflow: hidden;
+}
+p {
+    float: left;
+}
+```
+Yes
+
+## Does the screen keyword apply to the device's physical screen or the browser's viewport?
+
+```css
+@media only screen and (max-width: 1024px) {
+    margin: 0;
+}
+```
+Browser's viewport
+
+
+## Is <keygen> a valid HTML5 tag?
+Yes
+
+## Does the <bdo> tag change the direction of text?
+Yes
+
+## Is the above HTML valid?
+
+```html
+<figure>
+    <img src="myimage.jpg" alt="My image">
+    <figcaption>
+        <p>This is my self portrait.</p>
+    </figcaption>
+</figure>
+```
+Yes
+
+## In what situation should you use the <small> tag?
+When you want to add copyright information inside a <footer>
+
+## If a web page contains organic, multiple <h1> tags, will it affect the SEO negativley?
+No
+
+## If you have a page of search results and want to highlight the search term, what HTML tag would you use?
+<mark>
+
+## What does the scoped attribute do?
+
+```html
+<article>
+    <h1>Hello World</h1>
+    <style scoped>
+        p {
+            color: #FF0;
+        }
+    </style>
+    <p>This is my text</p>
+</article>
+ 
+<article>
+    <h1>This is awesome</h1>
+    <p>I am some other text</p>
+</article>
+```
+Applies style rules to all children of the scoped parent element
+
+
+## Does the HTML above trigger a http request when the page first loads?
+
+```html
+<div style="display: none;">
+    <img src="mypic.jpg" alt="My photo">
+</div>
+```
+Yes
+
+## What is alerted?
+
+var foo = 1;
+function bar() {
+    foo = 10;
+    return;
+    function foo() {}
+}
+bar();
+alert(foo); //1
+
+## What is alerted?
+
+var x   = 4,
+    obj = {
+        x: 3,
+        bar: function() {
+            var x = 2;
+            setTimeout(function() {
+                var x = 1;
+                alert(this.x);
+            }, 1000);
+        }
+    };
+obj.bar(); //4
+
+## What value is alerted?
+
+x = 1;
+function bar() {
+    this.x = 2;
+    return x;
+}
+var foo = new bar();
+console.log(foo.x); //2
+
+## What value is alerted?
+function foo(a) {
+    alert(arguments.length);
+}
+foo(1, 2, 3); //3
+
+
+## What value is alerted?
+var foo = function bar() {}; 
+alert(typeof bar); //undefined
+
+## What value is alerted?
+var arr = [];
+arr[0]  = 'a';
+arr[1]  = 'b';
+arr.foo = 'c';
+alert(arr.length); //2
+
+## What value is alerted?
+
+function foo(a) {
+    arguments[0] = 2;
+    alert(a);
+}
+foo(1); //2
+
+## What value is alerted?
+
+function foo(){}
+delete foo.length;
+alert(typeof foo.length);
