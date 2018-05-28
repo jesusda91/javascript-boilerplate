@@ -666,7 +666,59 @@ Una prueba unitaria es una forma de comprobar el correcto funcionamiento de un
 ## Pruebas funcionales
 En este caso, el objetivo de las pruebas funcionales es comprobar que el software que se ha creado cumple con la función para la que se había pensado. En este tipo de pruebas lo que miramos, lo que nos importan, son las entradas y salidas al software. Es decir, si ante una serie de entradas el software devuelve los resultados que nosotros esperábamos. Aquí solo observamos que se cumpla la funcionalidad, no comprobamos que el software esté bien hecho, no miramos el diseño del software. Estudiamos el software desde la perspectiva del cliente, no del desarrollador.
 
+## Modelo de Caja de CSS
+
+Al diseñar un documento, el motor de representación del navegador representa cada elemento como un cuadro rectangular según el estándar modelo de caja de CSS. CSS determina el tamaño, la posición y las propiedades (color, fondo, tamaño del borde, etc.) de estos cuadros.
+
+Cada caja se compone de cuatro partes (o áreas), definidas por sus respectivos límites: el límite del contenido, el límite del relleno (padding), el límite del borde y el límite del margen.
+
+![](./boxmodel.png)
+
+El área de contenido (content area), delimitada por el límite del contenido, contiene el contenido "real" del elemento, como lo puede ser texto, imagen o un reproductor de video. Sus dimensiones son el ancho del contenido (o el ancho de la caja de contenido) y la altura del contenido (o la altura de la caja de contenido). A menudo tiene un color de fondo o una imagen de fondo.
+
+Si la propiedad `box-sizing` está configurada en `content-box` (default), el tamaño del área de contenido se puede definir explícitamente con las propiedades de width, min-width, max-width, height, min-height y max-height.
+
+El área de relleno (padding), delimitada por el límite del relleno, extiende el área de contenido para incluir el relleno del elemento. Sus dimensiones son el ancho de la caja de relleno y la altura de la caja de relleno. Cuando el área de contenido tiene un fondo, se extiende dentro del relleno.
+
+El espesor del relleno está determinado por las propiedades `padding-top`, `padding-right`, `padding-bottom`, `padding-left`, y la propiedad abreviada `padding`.
+
+El área del borde, delimitada por el límite del borde, extiende el área de relleno para incluir los bordes del elemento. Sus dimensiones son el ancho de la caja del borde y la altura de la caja del borde.
+
+El espesor de los bordes está determinado por las propiedades `border-width` y la propiedad abreviada `border`. Si la propiedad `box-sizing` se establece en `border-box`, el tamaño del área del borde se puede definir explícitamente con las propiedades `width`, `min-width`, `max-width`, `height`, `min-height`, y `max-height`.
+
+El área del margen, delimitada por el límite del margen, extiende el área del borde para incluir un área vacía utilizada para separar el elemento de sus vecinos. Sus dimensiones son el ancho de la caja del margen y la altura de la caja del margen.
+
+El tamaño del área del margen está determinado por las propiedades `margin-top`, `margin-right`, `margin-bottom`, `margin-left`, y la propiedad abreviada `margin`. Cuando se produce el colapso del margen, el área del margen no está claramente definida ya que los márgenes se comparten entre las cajas.
+
+Finalmente, ten en cuenta que para elementos en línea no reemplazados, la cantidad de espacio ocupado (la contribución a la altura de la línea) está determinada por la propiedad `line-height`, aunque los bordes y el relleno todavía se muestran alrededor del contenido.
+
 # Preguntas frecuentes entrevista tecnica frontend
+
+## ¿Qué imprime el siguiente código?
+
+```javascript
+setTimeout(function() { 
+    console.log('AAA');
+}, 0);
+
+for (i = 0; i < 1000; i++) {
+    console.log('BBB'); 
+}
+for (i = 0; i < 1000; i++) {
+    console.log('CCC'); 
+}
+//BBB
+//CCC
+//AAA
+```
+> *JavaScript is single-threaded. Asynchronous callbacks are assigned to a message placed in a message queue.*
+> *When no code is currently executing, the event loop polls the message queue, requesting the next message in line to be processed (executed).*
+> *setTimeout adds a message (with the callback provided) to the end of this queue after the specified delay has elapsed.*
+
+## Describa los pseudo-elementos y discuta sus usos.
+
+Una **pseudoclase** CSS es una palabra clave que se añade a los selectores y que especifica un estado especial del elemento seleccionado. Por ejemplo,  :hover aplicará un estilo cuando el usuario haga hover sobre el elemento especificado por el selector.
+Al igual que las pseudo-classes, los **pseudo-elementos** se añaden a los selectores, pero en cambio, no describen un estado especial sino que, permiten añadir estilos a una parte concreta del documento. Por ejemplo, el pseudoelemento ::first-line selecciona solo la primera línea del elemento especificado por el selector.
 
 ## ¿Qué hace un `doctype` (`<!DOCTYPE html>`)?
 Es una declaración al comienzo de un documento HTML (previo al tag `<html>`). Consiste en una instrucción que le deja saber al navegador en que versión de HTML está el documento para interpretarlo correctamente.
@@ -675,7 +727,42 @@ En el caso de navegadores más viejos, interpretarán el HTML en un modo "compat
 `<!DOCTYPE html>` es mucho más simple que las definiciones de doctype anteriores, como por ejemplo:
 `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">`
 
+## ¿Cuál es la diferencia entre inline y inline-block?
 
+- inline: Muestra en la misma línea (respetando el flujo) todos los elementos y no acepta las propiedades width, height ni margenes verticales.
+- block: Muestra los elementos en líneas independientes y acepta las propiedades width, height y margenes verticales.
+- inline-block: Su comportamiento es una mezcla entre los dos anteriores, se muestran en la misma línea (respetando el flujo) todos los elementos y además, acepta las propiedades width, height y margenes verticales.
+
+ejms:
+```css
+.caja {
+    background-color: yellow;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    margin: 50px 10px;
+}
+```
+```html
+<p>Lorem ipsum dolor...</p>
+<span class="caja">CAJA 1</span> <!-- display: inline -->
+<span class="caja">CAJA 2</span>
+<span class="caja">CAJA 3</span> 
+```
+
+![](./image1.png)
+> *Como vemos las cajas tienen un estilo in-line porque son spans, se alinean unas a continuación de otras, pero no se respetan los anchos, los altos ni los márgenes verticales de los elementos.*
+
+Siguiendo con el mismo ejemplo anterior, si simplemente sustituimos los `<span>` por elementos `<div>`, ahora las cajas son elementos de bloque, y se renderizarán de la siguiente manera:
+
+![](./image2.png)
+
+El tercer valor de la lista anterior es muy interesante ya que permite obtener un comportamiento intermedio entre los otros dos. Los elementos inline-block fluyen con el texto y demás elementos como si fueran elementos en-línea y además respetan el ancho, el alto y los márgenes verticales.
+
+Así, si por ejemplo redefinimos la etiqueta `<span>` de esta manera (display: inline-block):
+
+![](./image3.png)
 
 ## ¿Qué nuevos elementos componen "HTML5"?
 - Semántica - Un marcado de texto (Text Markup) más semántico. Lo que agrega mejor accesibilidad, más herramientas para la descripción de el contenido Web y mayor facilidad para el SEO.
@@ -696,8 +783,26 @@ Web Workers, History API, DragAndDrop, RequestAnimationFrame, FullScreenAPI, Poi
 Cámara, Eventos touch, Orientación del dispositivo, Geolocalización, Web Bluetooth, - WebVR
 - CSS3
 
+## ¿Cuál es la diferencia entre normalizar y anular(reset) el CSS?, ¿cuál usarías y por qué?
+- CSS Reset hace, es redefinir toda una serie de objetos HTML (div, body, strong, etc.) para que tengan el mismo aspecto en todos los navegadores, dándoles un valor para que el navegador no utilice el valor que a cada navegador le venga más en gana.
+- Pues la mayor diferencia es que un CSS reset –como su nombre indica- hace un reinicio completo del CSS, vamos que lo deja a 0. Puede que eso sea lo que queremos, pero por desgracia perderemos otras cosas útiles que hacen los navegadores web. Y tendremos que especificar muchas más cosas en nuestro CSS de las que especificaríamos normalmente.
+Por el contrario, normalize.css lo que hace es normalizar –con ese nombre quien lo diría- la forma en que los navegadores muestran un contenido. Es decir, no eliminan el estilo por defecto que los navegadores dan a los elementos HTML, sino que hace que todos los navegadores utilicen el mismo estilo por defecto.
+
+## ¿Qué sucede al usar `* {box-sizing: border-box;}` ¿Qué desventajas supone su uso?
+
+La propiedad box-sizing se usa para modificar las propiedades por defecto del CSS box model que calculan el alto y el ancho de los elementos . De hecho es posible usarla para emular el comportamiento de los navegadores que no soportan las especificaciónes del CSS box model.
+
+- *border-box*
+El width y el height incluyen el padding y el border, pero no el margin. Volviendo al primer ejemplo, si usaramos border-box en el elemento .box {width: 300px; border: 10px solid black; padding: 10px; -moz-box-sizing: border-box; box-sizing: border-box; } tendrá un width de 300px después de ser interpretado por el navegador.
+
+- *padding-box*
+En este caso las propiedades width y height incluyen en padding pero no incluyen el border y el margin.
+
+- *content-box (default)*
+Este es el estilo por defecto especificado en el estándar de CSS . Las propiedades width y height son las medidas incluídas solo en el contenido, pero no incluyen el padding, el border o el margin. Por ejemplo, el elemento .box {width: 300px; border: 10px solid black; padding: 10px; } cuando sea interpretado por el navegador tendrá un width de 340px (resultado de la suma del border, el padding y el width).
+
 ## ¿Para qué sirven los atributos `data-`?
-Es un atributo de HTML, un estándar que permite adjuntar o guardar información extra en un elemento.
+Es un atributo de HTML, un estándar que permite adjuntar o guardar información extra en un elemento. Estos atributos personalizados nos permiten añadir datos en el HTML sin afectar a su visualización y sin salirnos del propio lenguaje HTML. Posteriormente podemos usar esta información para aplicar estilos CSS (o mostrar esta información con CSS) y podemos tratarla con JavaScript.
 ```html
   <div
     id="unDivCualquiera"
@@ -833,7 +938,21 @@ La idea primaria es usar elementos concretos para las interacciones que se reali
 
 Como excepción, es posible usar atributos como `role=""` o `aria-*` para especificar el rol de un elemento, pero no es bueno usarlos de manera conflictiva.
 
-### ¿Qué es un meta tag?
+## ¿Cómo optimizaría los recursos de un sitio web?
+
+-Especificar el tamaño de las imágenes
+> *Es importante en todas las imágenes especificar su tamaño, ya que con ello aceleramos el rendering de la página mediante la eliminación de reflows y repaints inecesarios.*
+-Combinación de las imágenes mediante css Sprites
+> *En este punto yo pensaba que no iba afectar mucho cuando me lo comentaron, pero mejoro mucho. ya que combinando las imágenes se reduce el número de peticiones de descarga que debe realizar el navegador para cargar el contenido total de la página web.*
+-Habilitar la compresión gzip
+-Optimizar las imágenes, Entregar imágenes al tamaño que necesitamos
+
+## Diferencias entre HTML y XHTML
+
+HTML y XHTML son las dos variantes que existen en el lenguaje HTML 5. Las diferencias entre esas dos variantes son básicamente sintácticas: la sintaxis HTML está inspirada en la norma SGML (aunque no la cumple estrictamente), mientras que la sintaxis XHTML está basada en la recomendación XML (aunque tampoco la cumple estrictamente).
+En general, la sintaxis XHTML es más "estricta", en el sentido de imponer restricciones en la forma de escribir etiquetas, atributos o valores, mientras que la sintaxis HTML es más "flexible".
+
+## ¿Qué es un meta tag?
 Son Elementos o Tags usados en HTML que proveen metadata del sitio o "Información sobre la información" (o del contenido) del mismo sitio.
 Ejemplo: Consideremos este meta tag:
 ```html
