@@ -1166,3 +1166,40 @@ document.body.appendChild(header);
 Teniendo estos 2 elementos `<h1 id="shadow">Hello Shadow DOM</h1>`, uno siendo creado y estilado mediante el uso de Shadow DOM y el otro siendo creado por la interpretación del DOM, el navegador muestra lo siguiente:
 
 ![](./shadow_dom.png)
+
+
+¿Cuál es la diferencia entre == y ===?
+
+¿Cuál es la diferencia entre el evento "document load" y el evento “document ready"?
+¿Cuál es la diferencia entre variables null, undefined y undeclared?
+Explique la política de mismo origen (same-origin policy) y sus repercusiones en JavaScript.
+
+var foo = 10 + '20';
+
+
+"i'm a lasagna hog".split("").reverse().join("");
+
+
+Pregunta: ¿Cuál es el valor de window.foo?
+( window.foo || ( window.foo = "bar" ) );
+
+
+Pregunta: ¿Cuál es el resultado de los dos alerts?
+var foo = "Hello";
+(function() {
+  var bar = " World";
+  alert(foo + bar);
+})();
+alert(foo + bar);
+
+
+Pregunta: ¿Cuál es el valor de foo.length?
+var foo = [];
+foo.push(1);
+foo.push(2);
+
+
+Pregunta: ¿Cuál es el valor de foo.x?
+var foo = {n: 1};
+var bar = foo;
+foo.x = foo = {n: 2};
