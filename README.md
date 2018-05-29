@@ -963,6 +963,52 @@ document.getElementById("nav").addEventListener("click", function(e) {
 
 ## ¿Qué es una IIFE?
 
+(immediately invoked function expression) Las funciones autoejecutables son funciones que se ejecutan tan pronto como se definen.
+```javascript
+(function () {
+    // code
+})();
+```
+
+La primera razón para usar una IIFE es por la privacidad de los datos. Las variables declaradas con var en Javascript tienen un alcance a nivel de función (solo se pueden usar en la función que las contiene). Por esa razón toda variable declarada dentro de una IIFE no puede ser usada por fuera.
+
+```javascript
+(function () {
+    var foo = "ABC";
+    console.log(foo); // log "ABC"
+})();
+console.log(foo); // ReferenceError: foo is not defined
+```
+
+Por supuesto, puedes asignar un nombre a la función e invocarla posteriormente, y lograr el mismo resultado.
+
+```javascript
+function myInmediateFunction () {
+    var foo = "ABC";
+    console.log(foo); // log "ABC"
+}
+
+myInmediateFunction();
+
+console.log(foo); // ReferenceError: foo is not defined
+```
+
+Este segundo ejemplo hace lo mismo, y de seguro que lo habrías entendido a la primera, ¿verdad?
+
+¿Entonces por qué nos encontramos a menudo con la primera expresión?
+
+- Primero porque estamos asignando un nombre a la función, cuando realmente no se necesita. Estamos ocupando el global namespace, incrementando la posibilidad de que ocurra alguna colisión entre identificadores.
+- Segundo, el último ejemplo no nos dice que se trata de una IIFE por sí mismo. A diferencia del caso anterior, en donde basta ver el código para saber que se trata de una función anónima que solo necesita ser invocada una vez, inmediatamente luego de su creación.
+- Dado que la función tiene un nombre, ésta podría ser usada por equivocación más de una vez.
+
+Debes tener en cuenta que se pueden pasar parámetros a una IIFE:
+
+var foo = "ABC";
+
+(function (bar) {
+    console.log(bar); // log "ABC"
+})(foo);
+
 ## ¿Qué nuevos elementos componen "HTML5"?
 - Semántica - Un marcado de texto (Text Markup) más semántico. Lo que agrega mejor accesibilidad, más herramientas para la descripción de el contenido Web y mayor facilidad para el SEO.
 `<footer>`, `<canvas>`, `<article>`, `<main>`, `<nav>`, `<aside>`, `<dialog>`, `<section>`, - Etc...
