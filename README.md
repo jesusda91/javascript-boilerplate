@@ -831,6 +831,8 @@ Así, si por ejemplo redefinimos la etiqueta `<span>` de esta manera (display: i
 <div id="movido" class="rojo"></div>
 <div class="rojo"></div>
 ```
+![](./absolute.png)
+
     Ejemplo tomando como referencia el elemento padre con position:relative más cercano
 
     En este caso, he utilizado el mismo CSS para el div con id movido que en el ejemplo anterior para que se viera que en este caso el div movido toma como referencia el elemento padre con position: relative y no la ventana del navegador (40 pixeles hacia abajo y 50 pixeles hacia la derecha respecto del elemento padre).
@@ -857,6 +859,7 @@ Así, si por ejemplo redefinimos la etiqueta `<span>` de esta manera (display: i
   <div id="movido" class="rojo"></div>
 </div>
 ```
+![](./absolute2.png)
 
 - **fixed:** Los elementos a los cuales se les posiciona con position: fixed también están fuera del flujo normal de la página. Sin embargo, no se debe de confundir con los elementos que están posicionados con position: absolute.
 
@@ -888,6 +891,8 @@ Así, si por ejemplo redefinimos la etiqueta `<span>` de esta manera (display: i
     <div id="movido" class="rojo"></div>
 </div>
 ```
+
+![](./fixed.png)
 
     Como puedes observar, el div movido está posicionado con position: fixed respecto a la ventana del navegador independientemente de que esté contenido en un elemento con position: relative o de que se realice un scroll sobre la página.
 
