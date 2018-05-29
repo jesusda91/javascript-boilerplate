@@ -689,6 +689,39 @@ El tamaño del área del margen está determinado por las propiedades `margin-to
 
 Finalmente, ten en cuenta que para elementos en línea no reemplazados, la cantidad de espacio ocupado (la contribución a la altura de la línea) está determinada por la propiedad `line-height`, aunque los bordes y el relleno todavía se muestran alrededor del contenido.
 
+## Programación orientada a componentes
+
+Extensión natural de la programación orientada a objetos (POO) en los sistemas de aplicación abiertos, que tiene como propósito contrarrestar las limitaciones de esta, como la falta de una unidad concreta de composición independiente en las aplicaciones, y la definición de interfaces a bajo nivel, que dificultan la reutilización comercial de objetos. Se considera que el nivel de abstracción de los componentes es más alto que el de los objetos y por lo tanto no comparten un estado y se comunican intercambiando mensajes que contienen datos.
+
+Un componente de software es un elemento de un sistema que ofrece un servicio predefinido, y es capaz de comunicarse con otros componentes.  Un componente es un objeto escrito de acuerdo a unas especificaciones. No importa qué especificación sea ésta, siempre y cuando el objeto se adhiera a la especificación. Solo cumpliendo correctamente con esa especificación es que el objeto se convierte en componente y adquiere características como reusabilidad. Cuando se necesita el acceso a un componente o cuando este debe ser compartido entre distintas redes, se recurre a procesos como la serialización para entregar el componente a su destino. La capacidad de ser reutilizado (reusability), es una característica importante de los componentes de software de alta calidad. Un componente debe ser diseñado e implementado de tal forma que pueda ser reutilizado en muchos programas diferentes.
+
+Los principios más importantes de la programación orientada a componentes son:
+
+- La separación de la interfaz de la implementación.
+- La compatibilidad binaria.
+- La independencia del lenguaje.
+- La transparencia en la localización.
+- La gestión de la concurrencia.
+- El control de versiones.
+- La seguridad basada en componentes.
+
+
+## Protocolo sin estado
+
+Es un protocolo de comunicaciones que trata cada petición como una transacción independiente que no tiene relación con cualquier solicitud anterior, de modo que la comunicación se compone de pares independientes de solicitud y respuesta. Un protocolo sin estado no requiere que el servidor retenga información de la sesión o de estado acerca de cada socio de las comunicaciones durante la duración de múltiples peticiones. En contraste, un protocolo que requiere el mantenimiento del estado interno en el servidor se conoce como un protocolo con estado. Ejemplos de protocolos sin estado son el Internet Protocol (IP), que es la base para Internet, y el Hypertext Transfer Protocol (HTTP), que es la base de la comunicación de datos para la World Wide Web.
+
+El diseño sin estado simplifica el diseño del servidor porque no hay necesidad de asignar dinámicamente almacenamiento para tratar las conversaciones en curso. Si un cliente desaparece en medio de la transacción, ninguna parte del sistema tiene que ser responsable de limpiar el estado actual del servidor.
+
+Una desventaja de los protocolos sin estado es que puede ser necesario incluir información adicional en cada petición, y esta información adicional necesitará ser interpretada por el servidor.
+
+## Stateful
+
+When we talk about computer systems, a “state” is simply the condition or quality of an entity at an instant in time, and to be stateful is to rely on these moments in time and to change the output given the determined inputs and state.
+
+When an application operates in a stateful mode, the server keeps track of who users are and what they do from one screen to the next. Preserving the state of users’ actions is fundamental to having a meaningful, continuous session. It typically begins with a login with user ID and password, establishing a beginning state to the session. As a user navigates through the site, the state may change. The server maintains the state of the user’s information throughout the session until logout.
+
+
+
 # Preguntas frecuentes entrevista tecnica frontend
 
 ## ¿Qué imprime el siguiente código?
