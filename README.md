@@ -1550,6 +1550,7 @@ Yes
 
 ## What is alerted?
 
+```javascript
 var foo = 1;
 function bar() {
     foo = 10;
@@ -1558,9 +1559,10 @@ function bar() {
 }
 bar();
 alert(foo); //1
-
+```
 ## What is alerted?
 
+```javascript
 var x   = 4,
     obj = {
         x: 3,
@@ -1573,9 +1575,10 @@ var x   = 4,
         }
     };
 obj.bar(); //4
-
+```
 ## What value is alerted?
 
+```javascript
 x = 1;
 function bar() {
     this.x = 2;
@@ -1583,35 +1586,44 @@ function bar() {
 }
 var foo = new bar();
 console.log(foo.x); //2
-
+```
 ## What value is alerted?
+
+```javascript
 function foo(a) {
     alert(arguments.length);
 }
 foo(1, 2, 3); //3
-
+```
 
 ## What value is alerted?
+
+```javascript
 var foo = function bar() {}; 
 alert(typeof bar); //undefined
-
+```
 ## What value is alerted?
+
+```javascript
 var arr = [];
 arr[0]  = 'a';
 arr[1]  = 'b';
 arr.foo = 'c';
 alert(arr.length); //2
-
+```
 ## What value is alerted?
 
+```javascript
 function foo(a) {
     arguments[0] = 2;
     alert(a);
 }
 foo(1); //2
-
+```
 ## What value is alerted?
 
+```javascript
 function foo(){}
 delete foo.length;
 alert(typeof foo.length);
+```
