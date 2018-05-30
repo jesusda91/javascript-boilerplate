@@ -720,6 +720,146 @@ When we talk about computer systems, a “state” is simply the condition or qu
 
 When an application operates in a stateful mode, the server keeps track of who users are and what they do from one screen to the next. Preserving the state of users’ actions is fundamental to having a meaningful, continuous session. It typically begins with a login with user ID and password, establishing a beginning state to the session. As a user navigates through the site, the state may change. The server maintains the state of the user’s information throughout the session until logout.
 
+## Algoritmos de ordenamiento
+
+## Estabilidad
+
+Los algoritmos de ordenamiento estable mantienen un relativo preorden total. Esto significa que un algoritmo es estable solo cuando hay dos registros R y S con la misma clave y con R apareciendo antes que S en la lista original.
+
+Cuando elementos iguales (indistinguibles entre sí), como números enteros, o más generalmente, cualquier tipo de dato en donde el elemento entero es la clave, la estabilidad no es un problema. De todas formas, se asume que los siguientes pares de números están por ser ordenados por su primer componente:
+
+```
+(4, 1)  (3, 7)  (3, 1)  (5, 6)
+```
+En este caso, dos resultados diferentes son posibles, uno de los cuales mantiene un orden relativo de registros con claves iguales, y una en la que no:
+
+```
+3, 7)  (3, 1)  (4, 1)  (5, 6)   (orden mantenido)
+(3, 1)  (3, 7)  (4, 1)  (5, 6)   (orden cambiado)
+```
+
+## Bubble Sort O(n²)
+
+```javascript
+const bubbleSort = arr => {
+    const l = arr.length;
+    for (let i = 0; i < l; i++ ) {
+        for (let j = 0; j < l - 1 - i; j++ ) {
+            if ( arr[ j ] > arr[ j + 1 ] ) {
+                [ arr[ j ], arr[ j + 1 ] ] = [ arr[ j + 1 ], arr[ j ] ];
+            }
+        }
+    }
+
+    return arr;
+};
+
+const arr = [10, 4, 40, 32, 67, 12, 43, 31, 65, 1];
+const result = bubbleSort(arr);
+```
+
+## Insertion Sort O(n²)
+
+```javascript
+const insertionSort = arr => {
+    const l = arr.length;
+    let j, temp;
+
+    for ( let i = 1; i < l; i++ ) {
+        j = i;
+        temp = arr[ i ];
+        while ( j > 0 && arr[ j - 1 ] > temp ) {
+            arr[ j ] = arr[ j - 1 ];
+            j--;
+        }
+        arr[ j ] = temp;
+    }
+
+    return arr;
+};
+
+const arr = [10, 4, 40, 32, 67, 12, 43, 31, 65, 1];
+const result = insertionSort(arr);
+```
+## Merge sort O(n log n)
+
+Conceptualmente, el ordenamiento por mezcla funciona de la siguiente manera:
+
+-Si la longitud de la lista es 0 ó 1, entonces ya está ordenada. En otro caso:
+-Dividir la lista desordenada en dos sublistas de aproximadamente la mitad del tamaño.
+-Ordenar cada sublista recursivamente aplicando el ordenamiento por mezcla.
+-Mezclar las dos sublistas en una sola lista ordenada.
+
+El ordenamiento por mezcla incorpora dos ideas principales para mejorar su tiempo de ejecución:
+
+-Una lista pequeña necesitará menos pasos para ordenarse que una lista grande.
+-Se necesitan menos pasos para construir una lista ordenada a partir de dos listas también ordenadas, que a partir de dos listas desordenadas. Por ejemplo, sólo será necesario entrelazar cada lista una vez que están ordenadas.
+
+```javascript
+const mergeSort = arr => {
+    if (arr.length < 2) {
+        return arr;
+    }
+
+    const middle = parseInt(arr.length / 2) | 0;
+    const left = arr.slice(0, middle);
+    const right = arr.slice(middle);
+    const merge = (left, right) => {
+        const result = [];
+        let il = ir = 0;
+
+        while (il < left.length && ir < right.length) {
+            result.push( (left[il] < right[ir]) ? left[il++] : right[ir++] );
+        }
+
+        return [...result, ...left.slice(il), ...right.slice(ir)];
+    }
+
+    return merge(mergeSort(left), mergeSort(right));
+}
+
+const arr = [10, 4, 40, 32, 67, 12, 43, 31, 65, 1];
+const result = mergeSort(arr);
+```
+
+## Quicksort
+
+El algoritmo trabaja de la siguiente forma:
+
+- Elegir un elemento de la lista de elementos a ordenar, al que llamaremos pivote.
+- Resituar los demás elementos de la lista a cada lado del pivote, de manera que a un lado queden todos los menores que él, y al otro los mayores. Los elementos iguales al pivote pueden ser colocados tanto a su derecha como a su izquierda, dependiendo de la implementación deseada. En este momento, el pivote ocupa exactamente el lugar que le corresponderá en la lista ordenada.
+- La lista queda separada en dos sublistas, una formada por los elementos a la izquierda del pivote, y otra por los elementos a su derecha.
+- Repetir este proceso de forma recursiva para cada sublista mientras éstas contengan más de un elemento. Una vez terminado este proceso todos los elementos estarán ordenados.
+
+Como se puede suponer, la eficiencia del algoritmo depende de la posición en la que termine el pivote elegido.
+
+-En el mejor caso, el pivote termina en el centro de la lista, dividiéndola en dos sublistas de igual tamaño. En este caso, el orden de complejidad del algoritmo es O(n·log n).
+-En el peor caso, el pivote termina en un extremo de la lista. El orden de complejidad del algoritmo es entonces de O(n²). El peor caso dependerá de la implementación del algoritmo, aunque habitualmente ocurre en listas que se encuentran ordenadas, o casi ordenadas. Pero principalmente depende del pivote, si por ejemplo el algoritmo implementado toma como pivote siempre el primer elemento del array, y el array que le pasamos está ordenado, siempre va a generar a su izquierda un array vacío, lo que es ineficiente.
+- En el caso promedio, el orden es O(n·log n).
+
+
+```javascript
+const quickSort = ( [ x = [], ...xs ] ) => {
+    return ( x.length === 0 ) ? [] : [
+        ...quickSort( xs.filter( y => y <= x ) ),
+        x,
+        ...quickSort( xs.filter( y => y > x ) )
+    ];
+}
+
+const arr = [10, 4, 40, 32, 67, 12, 43, 31, 65, 1];
+const result = quickSort(arr);
+```
+
+## ES6 Array.prototype.sort
+
+The elements of this array are sorted. The sort is not necessarily stable (that is, elements that compare equal do not necessarily remain in their original order).
+
+Numeric arrays (or arrays of primitive type) are sorted using the C++ standard library function std::qsort which implements some variation of quicksort (usually introsort).
+
+Contiguous arrays of non-numeric type are stringified and sorted using mergesort, if available (to obtain a stable sorting) or qsort if no merge sort is available.
+
+
 
 
 # Preguntas frecuentes entrevista tecnica frontend
