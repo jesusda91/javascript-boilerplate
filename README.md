@@ -864,6 +864,38 @@ Contiguous arrays of non-numeric type are stringified and sorted using mergesort
 
 # Preguntas frecuentes entrevista tecnica frontend
 
+## ¿Qué son funciones puras (pure function)?
+
+Es una funcion que depende solamente de los parametros que le damos como parametros de entrada, el retorno de la funcion solo depende de los valores que le pasamos, no depende de ningun estado intermedio de la aplicacion, no depende de un acceso a una base de datos, no depende de http request. No se deben alterar los valores pasados como parametros.
+
+No alterar estado 
+```javascript 
+state.prop = 'new_value' 
+```
+hacer copia 
+```javascript
+{...state, prop: 'new:value'}
+```
+
+## Funcion que retorna funcion
+```javascript
+const connect = (value1, value2) => {
+    console.log(value1);
+    console.log(value2);
+
+    return (component) => {
+        const result = `${component} - ${value1*value2}`;
+        console.log(result);
+        return result;
+    }
+}
+const connectedComponent = connect(2,3);
+connectedComponent('APP');
+```
+Analogo a
+```javascript
+const connected = connect(2,3)('APP');
+```
 ## ¿Qué imprime el siguiente código?
 
 ```javascript
